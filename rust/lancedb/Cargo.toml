@@ -39,7 +39,7 @@ regex.workspace = true
 serde = { version = "^1" }
 serde_json = { version = "1" }
 # For remote feature
-reqwest = { version = "0.12.3", features = ["gzip", "json","rustls-tls"], optional = true }
+reqwest = { version = "0.12.3", features = ["gzip", "json"], optional = true,default-features = false }
 
 [dev-dependencies]
 tempfile = "3.5.0"
@@ -53,6 +53,7 @@ aws-config = { version = "1.0" }
 
 [features]
 default = ["remote"]
-remote = ["dep:reqwest"]
+remote = ["reqwest/default-tls"]
+remote-rustls = ["reqwest/rustls-tls"]
 fp16kernels = ["lance-linalg/fp16kernels"]
 s3-test = []
